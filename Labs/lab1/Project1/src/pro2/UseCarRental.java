@@ -23,7 +23,7 @@ public class UseCarRental {
         carArr.add(new CarRental("Angelo","M8F9V9",'Z',1));
         
         for(int i = 0;i < carArr.size();i++){
-            carArr.get(i).display();
+            System.out.println(carArr.get(i).display());
         }
     }
 }

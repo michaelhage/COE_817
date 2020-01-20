@@ -20,10 +20,10 @@ public class LuxuryCarRental extends CarRental{
         this.setFee(79.99);
         
         if(isChauffer){
-            this.setTotal(this.getFee() * this.getSize() + 200);
+            this.setTotal(this.getFee() * this.getDayLength() + 200);
         }
         else{
-            this.setTotal(this.getSize() * this.getFee());
+            this.setTotal(this.getDayLength() * this.getFee());
         } 
     }
 
