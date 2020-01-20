@@ -37,6 +37,9 @@ public class LuxuryCarRental extends CarRental{
 
     @Override
     public String display() {
-        return this.display() + "isChauffer=" + isChauffer;
+        return "name= " + this.getName() + ", zip= " + this.getZip() + 
+                ", size= " + this.getSize() + ", fee= " + this.getFee() + 
+                ", length of rental days= " + this.getDayLength() + 
+                ", total= " + this.getTotal() + ", isChauffer=" + isChauffer;
     }   
 }
