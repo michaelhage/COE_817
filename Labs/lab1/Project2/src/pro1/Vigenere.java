@@ -28,11 +28,16 @@ public class Vigenere {
         String cipher = "";
         
         for(int i = 0; i < message.length(); i++){
-            int x = (message.charAt(i) + key.charAt(i)) % 26;
-            
-            x += 'A';
-            
-            cipher += (char)x;
+            if(message.charAt(i) == ' '){
+                cipher += ' ';
+            }
+            else{
+                int x = (message.charAt(i) + key.charAt(i) - 2*'A') % 26;
+
+                x += 'A';
+
+                cipher += (char)x;
+            }
         }
         
         return cipher;
@@ -42,11 +47,17 @@ public class Vigenere {
         String message = "";
         
         for(int i = 0; i < cipher.length(); i++){
-            int x = (cipher.charAt(i) - key.charAt(i)) % 26;
             
-            x += 'A';
+            if(cipher.charAt(i) == ' '){
+                message += ' ';
+            }
+            else{
+                int x = (cipher.charAt(i) - key.charAt(i) + 26) % 26;
             
-            message += (char)x;
+                x += 'A';
+            
+                message += (char)x;
+            }
         }
         
         return message;
