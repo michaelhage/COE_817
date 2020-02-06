@@ -15,9 +15,20 @@ import javax.crypto.*;
  */
 public class JEncrypDES {
     
+    private static Cipher encryptCipher, decryptCipher;
+    
     public static void main(String[] args){
-        String key, message, cipher;
+        String key, message, ciphertext = "";
         Scanner scan = new Scanner(System.in);
+        
+        try{
+            encryptCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            
+            decryptCipher = Cipher.getInstance("DES/CBC/PKCS5Padding");
+            
+        }catch(NoSuchAlgorithmException | NoSuchPaddingException e){
+            e.printStackTrace();
+        }
         
         System.out.println("Input message: ");
         message = scan.nextLine();
@@ -28,11 +39,11 @@ public class JEncrypDES {
         //Generate encrypted key
         
         //Encode message
-        System.out.println("Cipher Message:\n"+cipher);
+        System.out.println("Cipher Message:\n");
         
         //decode cipher text
-        System.out.println("Original Message:\n"+ cipher);
-        System.out.println("Check For Equivalence:"+ (cipher.equals(message)));
+        System.out.println("Original Message:\n"+ ciphertext);
+        System.out.println("Check For Equivalence:"+ (ciphertext.equals(message)));
         
     }
     
