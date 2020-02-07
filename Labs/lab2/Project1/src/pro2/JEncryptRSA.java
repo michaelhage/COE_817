@@ -17,10 +17,19 @@ import java.util.Base64;
  */
 public class JEncryptRSA {
     
-    private static PrivateKey privateKey;
-    private static PublicKey publicKey;
-    
     public static void main(String[] args){
+            
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            keyGen.initialize(2048);
+            KeyPair keyPair = keyGen.genKeyPair();
+            
+            PrivateKey privateKey = keyPair.getPrivate();
+            PublicKey publicKey = keyPair.getPublic();
+        try{
+            
+        }catch(Exception e){
+            e.printStackTrace();;
+        }
         
     }
     
