@@ -1,7 +1,7 @@
 /*
  * DES Encryption Method
  */
-package pro1;
+package DES;
 
 import java.util.Scanner;
 import java.security.*;

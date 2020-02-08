@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pro2;
+package RSA;
 
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,18 +19,27 @@ import java.util.Base64;
 public class JEncryptRSA {
     
     public static void main(String[] args){
-            
+        
+        Scanner input = new Scanner(System.in);
+        byte[] message;
+        
+        try{
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
             keyGen.initialize(2048);
             KeyPair keyPair = keyGen.genKeyPair();
             
             PrivateKey privateKey = keyPair.getPrivate();
             PublicKey publicKey = keyPair.getPublic();
-        try{
-            
         }catch(Exception e){
             e.printStackTrace();;
         }
+        
+        String tempMessage = input.nextLine();
+        
+        message = tempMessage.getBytes();
+        
+        System.out.println("Text in Bytes: "+ message);
+        System.out.println("Text: "+ new String(message));
         
     }
     
