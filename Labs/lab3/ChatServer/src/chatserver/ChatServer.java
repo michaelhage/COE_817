@@ -19,7 +19,7 @@ import sun.misc.*;
  *
  * @author Michael Hage
  */
-public class ChatServer {
+public class ChatServer implements Runnable{
 
     /**
      * @param args the command line arguments
@@ -53,6 +53,8 @@ public class ChatServer {
         
         Cipher RSACipher = null, DESCipher;
         SecretKey Key;
+        
+        Thread t1, t2;
         
         //Generate KeyPair
         try{
@@ -111,8 +113,9 @@ public class ChatServer {
             RSACipher.init(Cipher.DECRYPT_MODE, PrB);
             keyDES_Encrypt = RSACipher.doFinal(keyDES_Encrypt);
             
-            RSACipher.init(Cipher.DECRYPT_MODE, PuA);
-            keyDES_Encrypt = RSACipher.doFinal(keyDES_Encrypt);
+            //RSACipher.init(Cipher.DECRYPT_MODE, PuA);
+            
+            //keyDES_Encrypt = RSACipher.doFinal(keyDES_Encrypt);
             
             keyDES_String = Base64.getEncoder().encodeToString(keyDES_Encrypt);
             
@@ -122,9 +125,15 @@ public class ChatServer {
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             Key = keyFactory.generateSecret(DESKey);
             DESCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+            
         }catch(Exception e){
             e.printStackTrace();
         }
+        
+       t1 = new Thread(this);
+       t2 = new Thread(this);
+       
+       
     }
     
 }

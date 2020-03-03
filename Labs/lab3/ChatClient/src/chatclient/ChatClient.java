@@ -46,6 +46,8 @@ public class ChatClient {
         Cipher RSACipher = null, DESCipher;
         SecretKey Key;
         
+        Thread t1, t2;
+        
         // Create simple client socket, using localhost, port number: '9999'
         Socket cs = new Socket("localhost", 9999);
         Scanner serverInput = new Scanner(cs.getInputStream());
@@ -92,6 +94,8 @@ public class ChatClient {
         
         try{
             // Generate DES key.
+            
+            System.out.println("DES Key: " + keyDES_String);
             DESKeySpec DESKey = new DESKeySpec(keyDES_String.getBytes());
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             Key = keyFactory.generateSecret(DESKey);
@@ -101,8 +105,11 @@ public class ChatClient {
             keyDES_Encrypt = Base64.getDecoder().decode(keyDES_String);
             
             //Encrypt with Private A Key
-            RSACipher.init(Cipher.ENCRYPT_MODE, PrA);
-            keyDES_Encrypt = RSACipher.doFinal(keyDES_Encrypt);
+            //RSACipher.init(Cipher.ENCRYPT_MODE, PrA);
+            //keyDES_Encrypt = RSACipher.doFinal(keyDES_Encrypt);
+            
+            //keyDES_Encrypt = Base64.getEncoder().encode(keyDES_Encrypt);
+            //System.out.println(keyDES_Encrypt.length);
             
             //Encrypt with Public B Key
             RSACipher.init(Cipher.ENCRYPT_MODE, PuB);
@@ -115,6 +122,9 @@ public class ChatClient {
         }
         
         p.println(keyDES_EncryptS);
+        
+        t1 = new Thread((Runnable) this);
+       t2 = new Thread((Runnable) this);
     }
     
 }
