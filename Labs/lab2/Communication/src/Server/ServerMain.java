@@ -26,8 +26,6 @@ public class ServerMain {
         Socket s = ss.accept();
         DataInputStream din = new DataInputStream(s.getInputStream());
         DataOutputStream dout = new DataOutputStream(s.getOutputStream());
-        ObjectInputStream obin = new ObjectInputStream(s.getInputStream());
-        ObjectOutputStream obout = new ObjectOutputStream(s.getOutputStream());
         Scanner in = new Scanner(System.in);
         String id = "Initiator A";
         DES cipher = new DES();
@@ -37,7 +35,7 @@ public class ServerMain {
         recMessage = din.readUTF();
         System.out.println(recMessage);
         
-        dout.writeUTF("Hello");
+        dout.writeBytes(id);
         
         /*while (!recMessage.equals("stop")) {
             recMessage = din.readUTF();

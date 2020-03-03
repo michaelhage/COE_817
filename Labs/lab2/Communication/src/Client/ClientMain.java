@@ -28,16 +28,17 @@ public class ClientMain {
         Scanner in = new Scanner(System.in);
         String id = "Responder B";
         DES cipher = new DES();
+        int MAXBYTES = 1024;
         
-        Object temp;
-        String sendMessage = "" , recMessage = "",
-                keyS = "Ryerson", keyM = "Network Security";
+        byte[] sendMessage, recMessage = new byte[MAXBYTES];
+        String keyS = "Ryerson", keyM = "Network Security";
         
         dout.writeUTF("Connection Established");
         System.out.println("Conneciton Established");
         
-        recMessage = din.readUTF();
-        System.out.println(recMessage);
+        din.read(recMessage, 0, MAXBYTES);
+        //din.read(recMessage);
+        System.out.println(new String(recMessage));
         /*while (!sendMessage.equals("stop")) {
             System.out.println("Input a message");
             sendMessage = in.nextLine();
